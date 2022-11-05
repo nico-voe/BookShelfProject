@@ -18,7 +18,14 @@ function App() {
       ) : (
         <div className="list-books">
           <Header />
-          <BookShelf />
+          <BookShelf
+            shelfTitle="Currently Reading"
+            section="currentlyReading"
+          />
+
+          <BookShelf shelfTitle="Want to Read" section="wantToRead" />
+
+          <BookShelf shelfTitle="Read" section="read" />
           <OpenSearch
             showSearchPage={showSearchPage}
             setShowSearchPage={setShowSearchPage}

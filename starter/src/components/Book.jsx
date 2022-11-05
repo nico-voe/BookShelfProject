@@ -1,12 +1,15 @@
+import { useState, useEffect } from "react";
 import { update } from "../BooksAPI";
 
 const Book = ({ book }) => {
   const handleChange = (e) => {
-    e.preventDefault();
     console.log("e", e.target.value);
     update(book, e.target.value);
+    setShelf(true);
   };
-  console.log("hi");
+
+  const [shelf, setShelf] = useState(null);
+
   return (
     <li>
       <div className="book">
@@ -26,8 +29,11 @@ const Book = ({ book }) => {
               <option value="none" disabled>
                 Move to...
               </option>
-              <option value="wantToRead">Want to Read</option>
+              <option value="currentlyReading" selected disabled hidden>
+                Currently Reading
+              </option>
               <option value="currentlyReading">Currently Reading</option>
+              <option value="wantToRead">Want to Read</option>
               <option value="read">Read</option>
               <option value="none">None</option>
             </select>

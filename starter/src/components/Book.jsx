@@ -5,10 +5,7 @@ const Book = ({ book }) => {
   const handleChange = (e) => {
     console.log("e", e.target.value);
     update(book, e.target.value);
-    setShelf(true);
   };
-
-  const [shelf, setShelf] = useState(null);
 
   return (
     <li>

@@ -6,11 +6,20 @@ const SearchPage = ({ showSearchPage, setShowSearchPage, handleChange }) => {
   const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = async (e) => {
-    const query = e.target.value;
-    const getResults = await search(query, 10);
-    setSearchResults(getResults);
-    console.log("searchResults", searchResults);
-    console.log("search(query, 10)", search(query, 10));
+    try {
+      const query = e.target.value;
+      const getResults = await search(query, 10);
+      if (getResults.length) {
+        setSearchResults(getResults);
+      } else {
+        setSearchResults(null);
+      }
+
+      console.log("searchResults", searchResults);
+      console.log("search(query, 10)", search(query, 10));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -32,14 +41,18 @@ const SearchPage = ({ showSearchPage, setShowSearchPage, handleChange }) => {
       </div>
       <div className="search-books-results">
         <ol className="books-grid">
-          {searchResults?.map((book) => (
-            <Book
-              handleChange={handleChange}
-              book={book}
-              key={book.id}
-              shelf={book.shelf}
-            />
-          ))}
+          {searchResults ? (
+            searchResults.map((book) => (
+              <Book
+                handleChange={handleChange}
+                book={book}
+                key={book.id}
+                shelf={book.shelf}
+              />
+            ))
+          ) : (
+            <p>There are no books matching your search</p>
+          )}
         </ol>
       </div>
     </div>

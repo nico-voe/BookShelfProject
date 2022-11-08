@@ -1,12 +1,4 @@
-import { useState, useEffect } from "react";
-import { update } from "../BooksAPI";
-
-const Book = ({ book }) => {
-  const handleChange = (e) => {
-    console.log("e", e.target.value);
-    update(book, e.target.value);
-  };
-
+const Book = ({ book, handleChange }) => {
   return (
     <li>
       <div className="book">
@@ -22,7 +14,11 @@ const Book = ({ book }) => {
             }}
           ></div>
           <div className="book-shelf-changer">
-            <select onChange={(e) => handleChange(e)}>
+            <select
+              onChange={(e) => {
+                handleChange(e, book);
+              }}
+            >
               <option value="none" disabled>
                 Move to...
               </option>

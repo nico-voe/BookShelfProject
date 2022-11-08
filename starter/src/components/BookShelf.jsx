@@ -2,22 +2,7 @@ import { getAll } from "../BooksAPI";
 import { useEffect, useState } from "react";
 import Book from "./Book";
 
-const BookShelf = ({ shelfTitle, section }) => {
-  const [books, setBooks] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await getAll();
-        setBooks(res);
-      } catch (err) {
-        console.log("Error", err);
-      }
-    };
-    fetchData();
-  }, []);
-  console.log("books", books);
-
+const BookShelf = ({ shelfTitle, section, handleChange, books }) => {
   return (
     <div className="list-books-content">
       <div>
@@ -28,7 +13,12 @@ const BookShelf = ({ shelfTitle, section }) => {
               {books
                 ?.filter((el) => el.shelf === section)
                 .map((book) => (
-                  <Book book={book} key={book.id} shelf={book.shelf} />
+                  <Book
+                    handleChange={handleChange}
+                    book={book}
+                    key={book.id}
+                    shelf={book.shelf}
+                  />
                 ))}
             </ol>
           </div>

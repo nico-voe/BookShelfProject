@@ -40,6 +40,7 @@ function App() {
           showSearchPage={showSearchPage}
           setShowSearchPage={setShowSearchPage}
           handleChange={handleChange}
+          books={books}
         />
       ) : (
         <div className="list-books">

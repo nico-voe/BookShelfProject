@@ -2,7 +2,12 @@ import { search } from "../BooksAPI";
 import { useState, useEffect } from "react";
 import Book from "./Book";
 
-const SearchPage = ({ showSearchPage, setShowSearchPage, handleChange }) => {
+const SearchPage = ({
+  showSearchPage,
+  setShowSearchPage,
+  handleChange,
+  books,
+}) => {
   const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = async (e) => {

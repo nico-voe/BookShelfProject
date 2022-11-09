@@ -1,4 +1,3 @@
-import { getAll } from "../BooksAPI";
 import { useEffect, useState } from "react";
 import Book from "./Book";
 

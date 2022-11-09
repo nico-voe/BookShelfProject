@@ -26,7 +26,6 @@ function App() {
   console.log("books", books);
 
   const handleChange = (e, book) => {
-    console.log("e", e.target.value);
     update(book, e.target.value).then((data) => {
       setRender(!render);
       console.log("render", render);

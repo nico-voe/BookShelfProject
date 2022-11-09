@@ -15,13 +15,25 @@ const SearchPage = ({
       const query = e.target.value;
       const getResults = await search(query, 10);
       if (getResults.length) {
-        setSearchResults(getResults);
-      } else {
-        setSearchResults(null);
-      }
+        console.log("searchResults", searchResults);
+        console.log("search(query, 10)", search(query, 10));
+        //compare both arrays, if book id is same switch the search object with the shelf object
+        //for every book in sResult
+        // check if book.id is in books
+        const booksWithShelf = getResults.map((result) => {
+          const book = books.find((book) => book.id === result.id);
+          if (!book) return result;
+          return {
+            ...result,
+            shelf: book.shelf,
+          };
+        });
 
-      console.log("searchResults", searchResults);
-      console.log("search(query, 10)", search(query, 10));
+        setSearchResults(booksWithShelf);
+
+        return;
+      }
+      setSearchResults(null);
     } catch (error) {
       console.log(error);
     }

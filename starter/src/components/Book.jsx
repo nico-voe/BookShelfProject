@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const Book = ({ book, handleChange, shelf }) => {
+  console.log(book.title, shelf);
   return (
     <li>
       <div className="book">
@@ -22,9 +23,7 @@ const Book = ({ book, handleChange, shelf }) => {
                 handleChange(e, book);
               }}
             >
-              <option value="none" disabled>
-                Move to...
-              </option>
+              <option disabled>Move to...</option>
               {/* <option value="currentlyReading" selected disabled hidden>
                 Currently Reading
               </option> */}
